@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>✨ Pretty To-Do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e8ecf1);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        form {
+            display: flex;
+            gap: 8px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #86b7fe;
+            box-shadow: 0 0 5px rgba(134,183,254,0.5);
+        }
+        button {
+            padding: 10px 15px;
+            background: #6c63ff;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #574feb;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background: #f4f4f4;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+        li:hover {
+            background: #e9ecef;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .actions a {
+            text-decoration: none;
+            margin-left: 8px;
+            font-size: 16px;
+        }
+        .toggle {
+            color: #28a745;
+        }
+        .delete {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ My To-Do List</h1>
+        <form action="/add" method="post">
+            <input name="task" placeholder="What needs to be done?" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul>
+            {% for t in tasks %}
+                <li>
+                    <span class="{{ 'completed' if t.completed else '' }}">
+                        {{ t.text }}
+                    </span>
+                    <div class="actions">
+                        <a href="/toggle/{{ loop.index0 }}" class="toggle">✔</a>
+                        <a href="/delete/{{ loop.index0 }}" class="delete">❌</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
