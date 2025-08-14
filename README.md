@@ -11,6 +11,6 @@ Users can add and delete tasks. Styled with custom background colors.
 ## ⚙️ Installation
 1. Clone this repo:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/flask-todo.git
+   git clone https://github.com/nidhi095/flask-todo.git
    cd flask-todo
 
